@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Scrapin' Ain't Easy</title>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <nav class="navbar sticky-top navbar-light bg-dark text-white">
+    <h1>Scrapin' Ain't Easy</h1>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="jumbotron-fluid bg-light p-4 text-center">
+      <button class="btn btn-lg btn-danger mx-5" id="scrape-button">Scrape for Articles</button>
+      <button class="btn btn-lg btn-primary mx-5" id="favorite-button">Show Saved Articles</button>
+    </div>
+
+    <div id="articles"></div>
+    <div id="notes"></div>
+
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
