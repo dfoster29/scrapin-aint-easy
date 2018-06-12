@@ -38,7 +38,13 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/tuesdayscrapetest112123");
+var databseUri = mongoose.connect("mongodb://localhost/tuesdayscrapetest112123");
+
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(databaseUri)
+};
 
 // Routes
 
