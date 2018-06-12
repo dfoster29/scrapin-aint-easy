@@ -38,52 +38,52 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-var databaseUri = mongoose.connect("mongodb://localhost/tuesdayscrapetest112123");
+var databaseUri = "mongodb://localhost/scrapinainteasy1";
 
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect(databaseUri)
+  mongoose.connect(databaseUri);
 };
 
 // Routes
 
 // A GET route for scraping the autoweek website
 // app.get("/", function (req, res) {
-  // First, we grab the body of the html with request
-  axios.get("http://autoweek.com/").then(function (response) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(response.data);
+// First, we grab the body of the html with request
+axios.get("http://autoweek.com/").then(function (response) {
+  // Then, we load that into cheerio and save it to $ for a shorthand selector
+  var $ = cheerio.load(response.data);
 
-    // Now, we grab every h2 within an article tag, and do the following:
-    $("a.story-title").each(function (i, element) {
-      // Save an empty result object
-      var result = {};
+  // Now, we grab every h2 within an article tag, and do the following:
+  $("a.story-title").each(function (i, element) {
+    // Save an empty result object
+    var result = {};
 
-      console.log(result);
+    console.log(result);
 
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this)
-        .text();
+    // Add the text and href of every link, and save them as properties of the result object
+    result.title = $(this)
+      .text();
 
-      result.link = $(this)
-        .attr("href");
+    result.link = $(this)
+      .attr("href");
 
-      // Create a new Article using the `result` object built from scraping
-      db.Article.create(result)
-        .then(function (dbArticle) {
-          // View the added result in the console
-          console.log(dbArticle);
-        })
-        .catch(function (err) {
-          // If an error occurred, send it to the client
-          return res.json(err);
-        });
-    });
-
-    // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
+    // Create a new Article using the `result` object built from scraping
+    db.Article.create(result)
+      .then(function (dbArticle) {
+        // View the added result in the console
+        console.log(dbArticle);
+      })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        return res.json(err);
+      });
   });
+
+  // If we were able to successfully scrape and save an Article, send a message to the client
+  res.send("Scrape Complete");
+});
 // });
 
 // Route for getting all Articles from the db
