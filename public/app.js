@@ -10,16 +10,17 @@ $("#scrape-button").on("click", function() {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "</p>");
+      $("#articles").append("<h4 class='my-3' data-id='" + data[i]._id + "'>" + data[i].title + "</h4>");
     }
   });
 });
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", ".my-3", function() {
   // Empty the notes from the note section
-  $("#notes").empty();
+  $("#note-header").empty();
+  $("#note-body").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
@@ -32,13 +33,13 @@ $(document).on("click", "p", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#note-header").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
+      // $("#note-body").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#note-body").append("<textarea class='form-control' row='10' id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#note-body").append("<button class='my-3 btn btn-lg btn-dark' data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
       // If there's a note in the article
       if (data.note) {

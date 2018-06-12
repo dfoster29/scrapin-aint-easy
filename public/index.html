@@ -18,13 +18,26 @@
   </nav>
 
   <div class="container-fluid">
-    <div class="jumbotron-fluid bg-light p-4 text-center">
+    <div class="p-3 text-center">
       <button class="btn btn-lg btn-danger mx-5" id="scrape-button">Scrape for Articles</button>
       <button class="btn btn-lg btn-primary mx-5" id="favorite-button">Show Saved Articles</button>
     </div>
 
-    <div id="articles"></div>
-    <div id="notes"></div>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="articles"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header" id="note-header">
+
+          </div>
+          <div class="card-body" id="note-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
